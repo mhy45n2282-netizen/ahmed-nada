@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wedding Invitation</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #f5eee5;
+    color: #55483c;
+    font-family: 'Montserrat', sans-serif;
+    min-height: 100vh;
+}
+
+/* Opening Screen */
+#opening {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    text-align: center;
+}
+
+.small-title {
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 4px;
+    font-size: 11px;
+    margin-bottom: 35px;
+    color: #9b8063;
+}
+
+.envelope {
+    width: 290px;
+    height: 190px;
+    background: linear-gradient(145deg, #eadbc9, #d8c1a5);
+    position: relative;
+    cursor: pointer;
+    border-radius: 3px;
+    box-shadow: 0 15px 35px rgba(80, 55, 30, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.4s ease;
+}
+
+.envelope:hover {
+    transform: translateY(-5px);
+}
+
+/* Envelope Flap */
+.envelope::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 145px solid transparent;
+    border-right: 145px solid transparent;
+    border-top: 105px solid #d2b99b;
+    z-index: 2;
+}
+
+/* Envelope Bottom */
+.envelope::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 145px solid transparent;
+    border-right: 145px solid transparent;
+    border-bottom: 100px solid #e5d3bd;
+    z-index: 1;
+}
+
+/* Realistic Wax Seal */
+.seal {
+    position: absolute;
+    width: 65px;
+    height: 65px;
+    background:
+        radial-gradient(circle at 35% 30%, #d85a50 0%, #a91f26 35%, #78151b 75%, #510d13 100%);
+    border-radius: 48% 52% 46% 54%;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #f4c6a8;
+    font-size: 27px;
+    box-shadow:
+        0 4px 8px rgba(60, 0, 0, 0.35),
+        inset 2px 3px 5px rgba(255, 190, 160, 0.35),
+        inset -3px -4px 7px rgba(50, 0, 0, 0.45);
+    border: 2px solid rgba(100, 10, 15, 0.4);
+}
+
+.open-text {
+    margin-top: 35px;
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: #9b8063;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+/* Invitation */
+#invitation {
+    display: none;
+    min-height: 100vh;
+    padding: 35px 15px;
+    text-align: center;
+}
+
+.card {
+    max-width: 430px;
+    margin: auto;
+    background: #fffdf9;
+    padding: 35px 22px;
+    border: 1px solid #c9ad89;
+    outline: 5px solid rgba(201, 173, 137, 0.15);
+    box-shadow: 0 15px 40px rgba(80, 55, 30, 0.08);
+}
+
+.top-line {
+    width: 55px;
+    height: 1px;
+    background: #c9ad89;
+    margin: 0 auto 22px;
+}
+
+.invite-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    letter-spacing: 5px;
+    color: #a9875d;
+    margin-bottom: 25px;
+}
+
+.names {
+    font-family: 'Playfair Display', serif;
+    font-size: 39px;
+    line-height: 1.4;
+    color: #66513f;
+    font-weight: 400;
+}
+
+.ampersand {
+    font-family: 'Playfair Display', serif;
+    font-size: 25px;
+    color: #b28c65;
+    margin: 5px 0;
+}
+
+.couple-photo {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    margin: 25px 0;
+    border: 5px solid #f5eee5;
+}
+
+.description {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    line-height: 1.8;
+    color: #766453;
+    margin: 15px 0 30px;
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: #a9875d;
+    margin-bottom: 12px;
+}
+
+.details {
+    font-size: 13px;
+    line-height: 2.2;
+    color: #66584b;
+    letter-spacing: 1px;
+}
+
+.venue {
+    margin-top: 25px;
+}
+
+.footer {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 17px;
+    margin-top: 30px;
+    color: #a9875d;
+}
+
+.bottom-line {
+    width: 55px;
+    height: 1px;
+    background: #c9ad89;
+    margin: 25px auto 0;
+}
+
+/* Mobile */
+@media (max-width: 400px) {
+    .envelope {
+        width: 270px;
+    }
+
+    .envelope::before {
+        border-left-width: 135px;
+        border-right-width: 135px;
+    }
+
+    .envelope::after {
+        border-left-width: 135px;
+        border-right-width: 135px;
+    }
+
+    .names {
+        font-size: 34px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Opening Envelope -->
+<div id="opening">
+
+    <div class="small-title">A SPECIAL INVITATION</div>
+
+    <div class="envelope" onclick="openInvite()">
+        <div class="seal">♥</div>
+    </div>
+
+    <div class="open-text">TAP TO OPEN YOUR INVITATION</div>
+
+</div>
+
+
+<!-- Wedding Invitation -->
+<div id="invitation">
+
+    <div class="card">
+
+        <div class="top-line"></div>
+
+        <div class="invite-title">WEDDING INVITATION</div>
+
+        <div class="names">Ahmed</div>
+
+        <div class="ampersand">&</div>
+
+        <div class="names">Nada</div>
+
+        <img src="couple.jpg" class="couple-photo" alt="Ahmed and Nada">
+
+        <div class="description">
+            Two hearts, one beautiful story.
+            We'd love you to be part of our special day.
+        </div>
+
+        <div class="section-title">Save The Date</div>
+
+        <div class="details">
+            Sunday, 1 November 2026
+            <br>
+            At 08:00 PM
+        </div>
+
+        <div class="venue">
+
+            <div class="section-title">The Venue</div>
+
+            <div class="details">
+                At home
+                <br>
+                Mahalla El Kubra, Egypt
+            </div>
+
+        </div>
+
+        <div class="footer">
+            We can't wait to celebrate with you ♥
+        </div>
+
+        <div class="bottom-line"></div>
+
+    </div>
+
+</div>
+
+
+<!-- Background Music -->
+<audio id="music" src="song.mp3" loop preload="auto"></audio>
+
+
+<script>
+
+function openInvite() {
+
+    document.getElementById("opening").style.display = "none";
+
+    document.getElementById("invitation").style.display = "block";
+
+    const music = document.getElementById("music");
+
+    music.volume = 0.7;
+
+    music.play().catch(error => {
+        console.log("Music playback failed:", error);
+    });
+
+}
+
+</script>
+
+</body>
+</html>
